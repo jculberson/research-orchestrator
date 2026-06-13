@@ -1,0 +1,77 @@
+{
+  "name": "Research Orchestrator - Manual LinkedIn Inbox",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Save a LinkedIn Post",
+        "formDescription": "Paste a LinkedIn post you want tracked in the Workday intel database. No automation against LinkedIn is performed.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Post URL",
+              "fieldType": "text",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Title",
+              "fieldType": "text",
+              "requiredField": false
+            },
+            {
+              "fieldLabel": "Content / Notes",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Tags",
+              "placeholder": "comma-separated, e.g. linkedin, partner, competitor",
+              "fieldType": "text",
+              "requiredField": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "linkedin-form-trigger",
+      "name": "LinkedIn Post Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [240, 300],
+      "webhookId": "linkedin-manual-inbox"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/manual",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ url: $json['Post URL'], title: $json['Title'] || null, content: $json['Content / Notes'], tags: ($json['Tags'] || '').split(',').map(t => t.trim()).filter(t => t.length > 0) }) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "submit-manual-doc",
+      "name": "Submit to Orchestrator",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    }
+  ],
+  "connections": {
+    "LinkedIn Post Form": {
+      "main": [
+        [
+          {
+            "node": "Submit to Orchestrator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "research-orchestrator"
+  }
+}

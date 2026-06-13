@@ -1,0 +1,56 @@
+{
+  "name": "Research Orchestrator - Scheduled Harvest",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 6 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/runs",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"trigger\": \"scheduled\"\n}",
+        "options": {
+          "timeout": 1800000
+        }
+      },
+      "id": "trigger-run",
+      "name": "Run Harvester",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    }
+  ],
+  "connections": {
+    "Every 6 Hours": {
+      "main": [
+        [
+          {
+            "node": "Run Harvester",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "research-orchestrator"
+  }
+}

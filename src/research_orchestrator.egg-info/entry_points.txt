@@ -1,0 +1,2 @@
+[console_scripts]
+research-orchestrator = research_orchestrator.cli:main

@@ -1,0 +1,21 @@
+services:
+  orchestrator:
+    build: .
+    container_name: research-orchestrator
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      SUPABASE_URL: http://host.docker.internal:54321
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
+      OLLAMA_HOST: http://host.docker.internal:11434
+      OLLAMA_EMBED_MODEL: ${OLLAMA_EMBED_MODEL:-nomic-embed-text}
+      OLLAMA_CHAT_MODEL: ${OLLAMA_CHAT_MODEL:-llama3.1}
+      SEARCH_PROVIDERS: ${SEARCH_PROVIDERS:-brave}
+      BRAVE_API_KEY: ${BRAVE_API_KEY}
+      REDDIT_CLIENT_ID: ${REDDIT_CLIENT_ID}
+      REDDIT_CLIENT_SECRET: ${REDDIT_CLIENT_SECRET}
+      REDDIT_USER_AGENT: ${REDDIT_USER_AGENT:-research-orchestrator/0.1}
+      SEC_USER_AGENT: ${SEC_USER_AGENT}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
