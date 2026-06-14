@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Block commits that contain secrets, using gitleaks.
+# Bypass for a genuine false positive with:  git commit --no-verify
+set -u
+
+# Locate gitleaks: PATH first, then the known winget install path on this machine.
+GITLEAKS="$(command -v gitleaks 2>/dev/null || true)"
+if [ -z "$GITLEAKS" ]; then
+  for c in \
+    "/c/Users/$USERNAME/AppData/Local/Microsoft/WinGet/Links/gitleaks.exe" \
+    "/c/Users/$USERNAME/AppData/Local/Microsoft/WinGet/Packages/Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe/gitleaks.exe"; do
+    if [ -x "$c" ]; then GITLEAKS="$c"; break; fi
+  done
+fi
+if [ -z "$GITLEAKS" ]; then
+  echo "WARNING: gitleaks not found on PATH; skipping secret scan." >&2
+  echo "         Install it (winget install Gitleaks.Gitleaks) to re-enable." >&2
+  exit 0
+fi
+
+if ! "$GITLEAKS" git --staged --redact --no-banner . ; then
+  echo ""
+  echo "❌ gitleaks blocked this commit: a secret was detected in staged changes."
+  echo "   Move it into .env (gitignored) instead of a tracked file, then re-commit."
+  echo "   False positive? Bypass once with:  git commit --no-verify"
+  exit 1
+fi
+exit 0
