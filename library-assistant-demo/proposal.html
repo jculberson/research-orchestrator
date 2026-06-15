@@ -90,7 +90,7 @@
   <div class="sub">A natural-language concierge for the catalog you already have</div>
   <p style="margin:-4px 0 8px; color:#5b606c; font-size:9.6px;">Prepared for <b>Jennifer Goodson</b>, Library Director, Fort Smith Public Library — for discussion.</p>
 
-  <p class="lede">Patrons increasingly expect to ask for what they need in plain language and get an instant,
+  <p class="lede">Customers increasingly expect to ask for what they need in plain language and get an instant,
   accurate answer. The library already owns the hard assets — a rich catalog in <b>Polaris</b>, four branches,
   an events program, and licensed research databases. The Library Magic Assistant adds a friendly,
   natural-language <b>front door</b> to those assets: available 24/7, in any language, and welcoming to
@@ -98,7 +98,7 @@
 
   <div class="cols">
     <div>
-      <h2>What patrons could do</h2>
+      <h2>What customers could do</h2>
       <ul>
         <li><b>Find &amp; reserve in plain English</b>, with live availability across all four branches.</li>
         <li><b>Place holds</b> and choose a pickup branch; join the hold queue when copies are out.</li>
@@ -113,7 +113,7 @@
       <h2>Trust &amp; governance — non-negotiables</h2>
       <ul>
         <li><b>Read-only replica</b> — the assistant physically cannot alter the live ILS.</li>
-        <li><b>No patron PII</b> in the AI layer; account actions use official, authenticated APIs.</li>
+        <li><b>No customer PII</b> in the AI layer; account actions use official, authenticated APIs.</li>
         <li><b>Whitelisted functions only</b> — the model never writes raw database queries, which defends against prompt-injection.</li>
         <li><b>Grounded &amp; cited</b> answers — no fabricated facts.</li>
         <li><b>Full audit log;</b> ambiguous or sensitive requests escalate to staff.</li>
@@ -124,7 +124,7 @@
 
   <h2>How it works</h2>
   <div class="arch">
-    <div class="row"><div class="node"><b>Patron</b><small>web · mobile · kiosk · phone</small></div></div>
+    <div class="row"><div class="node"><b>Customer</b><small>web · mobile · kiosk · phone</small></div></div>
     <div class="row"><span class="arrow">↓</span><small>&nbsp;plain-English question&nbsp;</small><span class="arrow">↓</span></div>
     <div class="row"><div class="node llm"><b>Assistant (LLM)</b><small>intent + guardrails · no direct DB access</small></div></div>
     <div class="row"><span class="arrow">↓</span><small>&nbsp;structured, whitelisted calls only&nbsp;</small><span class="arrow">↓</span></div>
@@ -136,7 +136,7 @@
   </div>
   <p>The assistant interprets the question, then calls a small set of approved functions. <b>Reads</b> hit a
   read-only copy of catalog and availability data. <b>Actions</b> (holds, ILL, account) go through Polaris's
-  official authenticated web services, scoped to the patron's session. <b>Research</b> routes to licensed
+  official authenticated web services, scoped to the customer's session. <b>Research</b> routes to licensed
   databases and adds cited open sources — every answer carries its citations.</p>
 
   <div class="foot"><span>Fort Smith Public Library · Library Magic Assistant — concept proposal</span><span>Page 1 of 2 · Not affiliated with or endorsed by the library · sample concept</span></div>
@@ -172,7 +172,7 @@
         <li><b>Align on scope &amp; success metrics</b> with leadership — define what "good" looks like at 90 days.</li>
         <li><b>Technical discovery with Polaris / Innovative</b> — confirm read exports, write APIs (PAPI), and database licensing terms.</li>
         <li><b>Stand up the Phase-1 pilot</b> on real, read-only data behind a staff login; test with reference staff.</li>
-        <li><b>Soft-launch to patrons</b> on one high-traffic page; measure usage, accuracy, and staff time saved.</li>
+        <li><b>Soft-launch to customers</b> on one high-traffic page; measure usage, accuracy, and staff time saved.</li>
         <li><b>Decide Phase 2 + hosting model</b> from pilot results.</li>
       </ol>
     </div>
@@ -183,7 +183,7 @@
       is the heavy AI model — and even that can be local.</p>
       <table class="cost">
         <tr><th>Component</th><th>Local?</th></tr>
-        <tr><td>Web app / patron UI</td><td>✔ Fully local (static site)</td></tr>
+        <tr><td>Web app / customer UI</td><td>✔ Fully local (static site)</td></tr>
         <tr><td>Read-only catalog replica</td><td>✔ Local DB fed by Polaris exports</td></tr>
         <tr><td>Orchestration + guardrails</td><td>✔ Local service</td></tr>
         <tr><td>Semantic search / embeddings</td><td>✔ Local (open models)</td></tr>
@@ -191,7 +191,7 @@
       </table>
       <p><b>Recommended: hybrid.</b> Keep all data + retrieval + a local model in-building for routine
       questions; optionally call a cloud model for the hardest turns, sending only non-PII catalog snippets
-      under a zero-retention agreement. Patron data stays home; answer quality stays high.</p>
+      under a zero-retention agreement. Customer data stays home; answer quality stays high.</p>
 
       <h2>Rough cost envelope</h2>
       <table class="cost">

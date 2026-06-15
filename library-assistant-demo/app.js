@@ -5,7 +5,7 @@
  * small rules engine that *mimics* what a real LLM assistant would do once it is
  * wired to a read-only view of the library's Polaris ILS and live data feeds.
  *
- * No network calls, no real catalog, no patron data. Safe to open by double-
+ * No network calls, no real catalog, no customer data. Safe to open by double-
  * clicking index.html.
  * ========================================================================== */
 

@@ -10,7 +10,7 @@
    GUARDRAILS BAKED IN
    -------------------
    * All objects live in a separate `ai` schema (never touch base tables).
-   * No patron / circulation-transaction / financial tables are referenced.
+   * No customer / circulation-transaction / financial tables are referenced.
      Hold "demand" is exposed only as an aggregate COUNT — never who placed it.
    * Intended to be deployed on a READ REPLICA / reporting copy of Polaris
      (e.g. a database `PolarisReporting`), not the live transactional database.
@@ -156,7 +156,7 @@ GO
 
 
 /* =========================================================================
-   4.  ITEM-LEVEL (copies)  —  no PII, no due-date/patron linkage
+   4.  ITEM-LEVEL (copies)  —  no PII, no due-date/customer linkage
    ========================================================================= */
 CREATE OR ALTER VIEW ai.vwItem AS
     SELECT
@@ -206,7 +206,7 @@ GO
 
 
 /* =========================================================================
-   6.  HOLD DEMAND  —  aggregate only (drives "N holds ahead", NO patron data)
+   6.  HOLD DEMAND  —  aggregate only (drives "N holds ahead", NO customer data)
    ========================================================================= */
 CREATE OR ALTER VIEW ai.vwHoldDemand AS
     SELECT

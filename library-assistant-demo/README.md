@@ -1,13 +1,13 @@
 # Fort Smith Public Library — "Library Magic Assistant" concept demo
 
 A clickable, **art-of-the-possible** prototype to show the library's leadership what
-an AI assistant could do for patrons. It is styled to echo the live
+an AI assistant could do for customers. It is styled to echo the live
 [fortsmithlibrary.org](https://www.fortsmithlibrary.org/) brand — navy logo block,
 mauve "How can we help?" bands, teal quick-link tiles, coral *Give* button, and the
 "Your Community Front Porch" tagline.
 
 > ⚠️ **This is a mockup.** Everything runs in the browser on **sample data** — no real
-> catalog, no patron records, no network calls. It is for discussion only and is not
+> catalog, no customer records, no network calls. It is for discussion only and is not
 > affiliated with or endorsed by the library.
 
 ## How to view it
@@ -57,7 +57,7 @@ natural language can safely query** — is both the most valuable and the safest
 start. Here's the shape of it:
 
 ```
-            Patron (web / mobile / kiosk / phone)
+            Customer (web / mobile / kiosk / phone)
                           │  plain-English question
                           ▼
                 ┌───────────────────────┐
@@ -79,7 +79,7 @@ Key decisions that make this responsible:
   lives at `catalog.fortsmithlibrary.org/polaris`). Stand up a **read-only replica or a
   nightly/near-real-time export** of just the *bibliographic + availability* data. The
   assistant queries that — it physically **cannot** write to or lock the live system.
-- **No patron PII in the read view.** Holdings and availability are not personal data.
+- **No customer PII in the read view.** Holdings and availability are not personal data.
   Anything account-specific (your holds, your card) goes through Polaris's **official
   authenticated APIs (PAPI/web services)**, scoped per-session, never scraped.
 - **The LLM doesn't write SQL against your database.** It calls a small set of
@@ -87,7 +87,7 @@ Key decisions that make this responsible:
   "submit ILL"). This is the single most important safety property — it prevents prompt
   injection from turning into data exposure or a destructive query.
 - **Grounded answers only.** Recommendations and research come *with citations* (catalog
-  records, database entries, named sources) so staff and patrons can trust them and
+  records, database entries, named sources) so staff and customers can trust them and
   there's no fabrication.
 - **Full audit + human escalation.** Every action is logged; anything ambiguous (a fine
   dispute, a sensitive request) hands off to staff/existing chat.
@@ -103,14 +103,14 @@ A realistic phased rollout:
 
 ## Is this a good idea?
 
-**Short answer: yes — as a patron-facing concierge over a read-only catalog view,
+**Short answer: yes — as a customer-facing concierge over a read-only catalog view,
 starting with read-only Q&A. That scoping is what makes it safe, cheap, and genuinely
 useful.** A few honest caveats to raise *with* the CEO so the pitch is credible:
 
 **Why it's compelling**
 - Meets people in plain language, 24/7, in any language — extends the reference desk
   without adding staff hours.
-- Lowers the barrier for exactly the patrons libraries most want to reach: kids'
+- Lowers the barrier for exactly the customers libraries most want to reach: kids'
   caregivers, job seekers, new-to-research users, non-English speakers.
 - The hardest-sounding ask (live inventory + reserve) is actually well-trodden: Polaris
   already exposes availability and has official APIs for holds/ILL. We're adding a
@@ -127,7 +127,7 @@ useful.** A few honest caveats to raise *with* the CEO so the pitch is credible:
   *in-building* or session-bound; the assistant can *route* to them but can't relicense
   their content. Keep "augmented research" to **cited links + open sources**, not
   re-hosting paywalled material.
-- **Privacy & equity.** Library patron records are legally protected and politically
+- **Privacy & equity.** Library customer records are legally protected and politically
   sensitive. Keep PII out of the AI layer, be transparent that it's an assistant, and
   keep a human path. Also keep the **non-AI** catalog/site fully usable — the assistant
   augments, never replaces.
@@ -135,7 +135,7 @@ useful.** A few honest caveats to raise *with* the CEO so the pitch is credible:
   upkeep, and staff training. Phase 1 keeps this small while you prove value.
 
 **Recommended pitch framing:** "A natural-language front porch to the catalog we already
-have — read-only first, patron-friendly, with citations and a human always one click
+have — read-only first, customer-friendly, with citations and a human always one click
 away." Demo Phase 1 live (this mockup), name Phase 2/3 as the roadmap.
 
 ## Files
