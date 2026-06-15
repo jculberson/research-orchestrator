@@ -157,6 +157,10 @@ away." Demo Phase 1 live (this mockup), name Phase 2/3 as the roadmap.
 - `BUSINESS-NOTES.md` — analysis of standing up a managed-AI-for-orgs business.
 - `DEMO-AND-PROMO.md` — the **opening demo scenario** (live click-through for the meeting)
   and a **30-second promo video script** (storyboard + voiceover + partnership messaging).
+- `promo-storyboard.html` / `Library-Magic-Assistant-Promo-Storyboard.pdf` — a
+  **videographer-ready storyboard** (7 framed shots with timecodes, captions, and VO).
+- `PRESS-AND-SOCIAL.md` — ready-to-adapt **press blurb and social captions** (Facebook,
+  Instagram, X, LinkedIn) + hashtag/pull-quote banks.
 
 **Proposed data layer (the catalog as a read-only, PII-free surface)**
 - `sql/polaris-ai-views.sql` — proposed **SQL Server (Polaris) read-only views** the

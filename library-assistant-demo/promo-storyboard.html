@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Promo Storyboard — Library Magic Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{ --navy:#3b4a78; --navy-d:#2e3a60; --mauve:#854c5e; --teal:#4e8a9c; --coral:#d9543b;
+         --ink:#23262f; --soft:#5b606c; --line:#dcd7cc; --cream:#f4f1ea; }
+  *{ box-sizing:border-box; }
+  body{ font-family:"Source Sans 3",system-ui,sans-serif; color:var(--ink); margin:0; background:#e9e6df; font-size:10px; }
+  h1,h2,h3{ font-family:"Cinzel",Georgia,serif; margin:0; }
+  .page{ width:8.5in; min-height:11in; background:#fff; margin:16px auto; padding:0.5in 0.55in;
+         box-shadow:0 4px 22px rgba(0,0,0,.16); }
+  .head{ display:flex; align-items:center; gap:12px; border-bottom:3px solid var(--navy); padding-bottom:9px; margin-bottom:12px; }
+  .mk{ width:38px;height:38px;border:2px solid var(--navy); display:flex;align-items:center;justify-content:center;flex:0 0 auto; }
+  .h-txt .t1{ font-family:"Cinzel",serif; font-weight:700; font-size:17px; letter-spacing:2px; color:var(--navy); line-height:1; }
+  .h-txt .t2{ font-family:"Cinzel",serif; font-weight:600; font-size:11px; letter-spacing:4px; color:var(--navy); }
+  .h-right{ margin-left:auto; text-align:right; }
+  .h-right .a{ font-family:"Cinzel",serif; color:var(--mauve); font-weight:700; font-size:14px; }
+  .h-right .b{ color:var(--soft); font-size:9px; }
+  .meta{ color:var(--soft); font-size:9.5px; margin:0 0 11px; }
+  .meta b{ color:var(--ink); }
+
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+  .frame{ border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; display:flex; flex-direction:column; }
+  .screen{ aspect-ratio:16/9; position:relative; overflow:hidden; border-bottom:1px solid var(--line);
+           display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; }
+  .tc{ position:absolute; top:6px; left:6px; background:rgba(0,0,0,.55); color:#fff; font-size:8.5px;
+       font-weight:700; padding:1px 6px; border-radius:3px; letter-spacing:.5px; }
+  .cap{ position:absolute; bottom:6px; left:6px; right:6px; font-size:9px; font-weight:700;
+        background:rgba(0,0,0,.42); padding:2px 6px; border-radius:3px; }
+  .scene{ padding:0 10px; }
+  .scene .big{ font-size:22px; line-height:1.1; }
+  .scene .sm{ font-size:9px; opacity:.92; margin-top:3px; }
+  .info{ padding:7px 9px; }
+  .info .vo{ font-size:9.5px; } .info .vo b{ color:var(--mauve); }
+  .info .shot{ font-size:8.6px; color:var(--soft); margin-top:3px; }
+
+  /* mock UI bits */
+  .bg-navy{ background:linear-gradient(135deg,#3f4d6e,#56708a); }
+  .bg-mauve{ background:var(--mauve); }
+  .bg-teal{ background:var(--teal); }
+  .bg-cream{ background:var(--cream); color:var(--ink); }
+  .chatcard{ background:#fff; color:var(--ink); border-radius:6px; padding:5px 7px; font-size:8px;
+             box-shadow:0 2px 8px rgba(0,0,0,.2); text-align:left; width:78%; }
+  .pill{ display:inline-block; background:#e4f3ea; color:#2f8f5b; font-size:7px; font-weight:700; padding:1px 5px; border-radius:99px; }
+  .pill-w{ background:#f6ecd9; color:#b3712a; }
+  .lock .t1{ font-family:"Cinzel",serif; font-weight:700; font-size:20px; letter-spacing:3px; }
+  .lock .t2{ font-family:"Cinzel",serif; font-weight:600; font-size:12px; letter-spacing:5px; }
+  .lock .first{ margin-top:6px; font-size:10px; font-style:italic; color:#ffe2b0; }
+  .notebar{ margin-top:11px; background:#faf6f7; border-left:3px solid var(--mauve); padding:7px 10px; border-radius:0 4px 4px 0; font-size:9px; }
+  .notebar b{ color:var(--mauve); }
+  @media print{ body{ background:#fff; } .page{ box-shadow:none; margin:0; } @page{ size:Letter; margin:0; } }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="head">
+    <div class="mk"><svg viewBox="0 0 64 64" width="26" height="26"><g fill="none" stroke="#3b4a78" stroke-width="3">
+      <path d="M10 26 L32 12 L54 26"/><path d="M22 26 a10 10 0 0 1 20 0"/>
+      <line x1="16" y1="30" x2="16" y2="46"/><line x1="26" y1="30" x2="26" y2="46"/>
+      <line x1="38" y1="30" x2="38" y2="46"/><line x1="48" y1="30" x2="48" y2="46"/>
+      <line x1="9" y1="50" x2="55" y2="50"/></g></svg></div>
+    <div class="h-txt"><div class="t1">FORT SMITH</div><div class="t2">PUBLIC LIBRARY</div></div>
+    <div class="h-right"><div class="a">Promo Storyboard</div><div class="b">30-second cut · concept</div></div>
+  </div>
+
+  <p class="meta"><b>The Library Magic Assistant — 30s promo.</b> B-roll = screen-recording of the prototype.
+  VO ≈ 78 words. Brand: navy <b>#3b4a78</b> · mauve <b>#854c5e</b> · teal <b>#4e8a9c</b> · coral <b>#d9543b</b>.
+  Captions are load-bearing (most views are muted).</p>
+
+  <div class="grid">
+
+    <!-- 1 -->
+    <div class="frame">
+      <div class="screen bg-navy">
+        <span class="tc">0:00–0:04</span>
+        <div class="scene"><div class="big">Your Community<br>Front Porch</div><div class="sm">cursor lands on "HOW CAN WE HELP?"</div></div>
+        <div class="cap">Your library. Now with answers.</div>
+      </div>
+      <div class="info"><div class="vo"><b>VO:</b> "Your library has always been your community's front porch."</div>
+        <div class="shot">SHOT: homepage, slow push-in on the help band.</div></div>
+    </div>
+
+    <!-- 2 -->
+    <div class="frame">
+      <div class="screen bg-cream">
+        <span class="tc">0:04–0:09</span>
+        <div class="chatcard">"find me a book about dragons"<br><br><b>Fourth Wing</b> · <span class="pill">2 in</span> <span class="pill-w">holds: 23</span></div>
+        <div class="cap" style="color:#fff">Ask in plain English.</div>
+      </div>
+      <div class="info"><div class="vo"><b>VO:</b> "Now just ask — in plain English."</div>
+        <div class="shot">SHOT: type query, cards animate in with live availability.</div></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="frame">
+      <div class="screen bg-cream">
+        <span class="tc">0:09–0:14</span>
+        <div class="chatcard">"Reserve <b>The Women</b>"<br>Pickup: <b>Main Library</b><br><span class="pill">✅ Hold placed</span></div>
+        <div class="cap" style="color:#fff">Reserve it — live, across every branch.</div>
+      </div>
+      <div class="info"><div class="vo"><b>VO:</b> "Find it, see it's on the shelf, and reserve it — in seconds."</div>
+        <div class="shot">SHOT: tap "place hold," pick branch, confirm checkmark.</div></div>
+    </div>
+
+    <!-- 4 -->
+    <div class="frame">
+      <div class="screen bg-teal">
+        <span class="tc">0:14–0:19</span>
+        <div class="scene"><div class="big">🧒</div><div class="sm">"book ideas for my 7-year-old" → right-leveled picks + content note</div></div>
+        <div class="cap">Just-right reads for every age.</div>
+      </div>
+      <div class="info"><div class="vo"><b>VO:</b> "Suggestions for every reader. Research help. Events and story times."</div>
+        <div class="shot">SHOT: kid-level book cards fan out.</div></div>
+    </div>
+
+    <!-- 5 -->
+    <div class="frame">
+      <div class="screen bg-cream">
+        <span class="tc">0:19–0:23</span>
+        <div class="chatcard">🌳 Family tree → <b>Ancestry</b>, <b>Gale</b><br><span style="color:#854c5e;font-weight:700">+ cited sources</span></div>
+        <div class="cap" style="color:#fff">Real sources. Always cited.</div>
+      </div>
+      <div class="info"><div class="vo"><b>VO:</b> "Grounded in your collections — never made up."</div>
+        <div class="shot">SHOT: genealogy tile → database cards + source list.</div></div>
+    </div>
+
+    <!-- 6 -->
+    <div class="frame">
+      <div class="screen bg-mauve">
+        <span class="tc">0:23–0:27</span>
+        <div class="scene"><div class="big">🕐 🗓️ 🔄 🌐</div><div class="sm">quick montage: hours · events · interlibrary loan · languages</div></div>
+        <div class="cap">24/7 · any language · a human one click away</div>
+      </div>
+      <div class="info"><div class="vo"><b>VO:</b> "Open all night. In any language. A librarian always one click away."</div>
+        <div class="shot">SHOT: 4 fast cuts, ~1s each.</div></div>
+    </div>
+
+    <!-- 7 -->
+    <div class="frame">
+      <div class="screen bg-navy lock">
+        <span class="tc">0:27–0:30</span>
+        <div class="scene"><div class="t1">FORT SMITH</div><div class="t2">PUBLIC LIBRARY</div>
+          <div class="first">first in the nation to build it ✨</div></div>
+      </div>
+      <div class="info"><div class="vo"><b>VO:</b> "Fort Smith Public Library — the first to bring it home."</div>
+        <div class="shot">SHOT: logo lockup, assistant sparkle, music resolves.</div></div>
+    </div>
+
+    <!-- notes cell -->
+    <div class="frame" style="border-style:dashed">
+      <div class="info" style="padding:9px 10px">
+        <h3 style="font-size:11px;color:var(--navy);margin-bottom:4px">Production notes</h3>
+        <div class="shot" style="font-size:8.8px;color:var(--ink);line-height:1.45">
+          • Capture b-roll from the <b>real prototype</b> (offline single-file build) so footage matches the demo.<br>
+          • Music: warm, optimistic, light percussion; resolve on the logo beat.<br>
+          • Make a <b>15s teaser</b> too: frames 1, 3, 7.<br>
+          • Keep a "concept" disclaimer on internal cuts until launch.<br>
+          • Alt closers: "Built here first. Built together." / "A national first — proudly from Fort Smith."
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notebar"><b>Honest-hype guardrail:</b> until it launches, frame it as "first to <b>pilot</b> / first to build it <b>together</b>" — true and still exciting. Avoid implying the service is already live.</div>
+</section>
+</body>
+</html>
