@@ -148,6 +148,9 @@ away." Demo Phase 1 live (this mockup), name Phase 2/3 as the roadmap.
 - `library-magic-assistant-demo.html` — **single-file build** (CSS + JS inlined); email
   it or drop it on a tablet/kiosk — opens with no server. Rebuild via
   `node build-standalone.cjs`.
+- `project.html` — the **Project Library** hub sub-page (reached from the "Project
+  Library" tile on the homepage): one place that links to the pitch, live demo, promo
+  storyboard, data layer, cost detail, and go-to-market docs.
 
 **Leave-behinds for the meeting**
 - `proposal.html` / `Library-Magic-Assistant-Proposal.pdf` — the **2-page proposal + cost
