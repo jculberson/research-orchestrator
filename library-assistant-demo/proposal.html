@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Library Magic Assistant — Concept Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{ --navy:#3b4a78; --navy-d:#2e3a60; --mauve:#854c5e; --teal:#4e8a9c; --coral:#d9543b;
+         --ink:#23262f; --soft:#5b606c; --line:#dcd7cc; --bg:#fff; }
+  *{ box-sizing:border-box; }
+  body{ font-family:"Source Sans 3",system-ui,sans-serif; color:var(--ink); margin:0;
+        background:#e9e6df; line-height:1.42; font-size:10.6px; }
+  h1,h2,h3,h4{ font-family:"Cinzel",Georgia,serif; margin:0; }
+  .page{ width:8.5in; min-height:11in; background:var(--bg); margin:18px auto; padding:0.55in 0.6in 0.5in;
+         box-shadow:0 4px 22px rgba(0,0,0,.16); position:relative; }
+  .masthead{ display:flex; align-items:center; gap:12px; border-bottom:3px solid var(--navy); padding-bottom:10px; }
+  .mk{ width:42px;height:42px;border:2px solid var(--navy); display:flex;align-items:center;justify-content:center; flex:0 0 auto;}
+  .mk svg{ display:block; }
+  .mh-txt .bt1{ font-family:"Cinzel",serif; font-weight:700; font-size:19px; letter-spacing:2px; color:var(--navy); line-height:1; }
+  .mh-txt .bt2{ font-family:"Cinzel",serif; font-weight:600; font-size:12px; letter-spacing:4px; color:var(--navy); }
+  .mh-right{ margin-left:auto; text-align:right; }
+  .mh-right .t{ font-family:"Cinzel",serif; color:var(--mauve); font-weight:700; font-size:15px; }
+  .mh-right .s{ color:var(--soft); font-size:9.5px; }
+  h1.title{ font-size:22px; color:var(--navy); margin:14px 0 2px; letter-spacing:.5px; }
+  .sub{ color:var(--mauve); font-weight:700; font-size:12px; margin-bottom:10px; }
+  h2{ font-size:13px; color:var(--navy); margin:13px 0 5px; padding-bottom:3px; border-bottom:1px solid var(--line); letter-spacing:.5px; }
+  p{ margin:0 0 7px; }
+  ul{ margin:0 0 7px; padding-left:16px; } li{ margin:1.5px 0; }
+  .lede{ font-size:11.2px; color:#3a3e49; }
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .pill{ display:inline-block; background:#eef1f8; color:var(--navy); font-weight:700; font-size:8.5px;
+         letter-spacing:.5px; padding:1px 6px; border-radius:3px; }
+  .note{ background:#faf6f7; border-left:3px solid var(--mauve); padding:7px 10px; border-radius:0 4px 4px 0; }
+  .foot{ position:absolute; bottom:0.32in; left:0.6in; right:0.6in; border-top:1px solid var(--line);
+         padding-top:5px; color:#8a8f9b; font-size:8.3px; display:flex; justify-content:space-between; }
+
+  /* architecture diagram */
+  .arch{ border:1px solid var(--line); border-radius:8px; padding:10px; background:#fbfaf7; margin:4px 0 7px; }
+  .arch .row{ display:flex; align-items:center; justify-content:center; gap:8px; margin:4px 0; }
+  .node{ border:1.5px solid var(--navy); border-radius:6px; padding:5px 8px; font-size:9px; text-align:center;
+         background:#fff; min-width:84px; }
+  .node.llm{ border-color:var(--mauve); background:#fbf3f5; }
+  .node.read{ border-color:var(--teal); background:#eef6f8; }
+  .node.write{ border-color:var(--navy); background:#eef1f8; }
+  .node b{ display:block; font-size:9.3px; }
+  .node small{ color:var(--soft); font-size:7.8px; }
+  .arrow{ color:var(--soft); font-size:13px; }
+  .three{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+
+  /* phases / steps */
+  .phase{ border:1px solid var(--line); border-radius:7px; padding:8px 10px; margin-bottom:7px; }
+  .phase .ph-h{ display:flex; justify-content:space-between; align-items:baseline; }
+  .phase h3{ font-size:11.5px; color:var(--navy); }
+  .phase .when{ color:var(--coral); font-weight:700; font-size:9px; }
+  .steps{ counter-reset:s; list-style:none; padding-left:0; }
+  .steps li{ counter-increment:s; padding-left:22px; position:relative; margin:4px 0; }
+  .steps li::before{ content:counter(s); position:absolute; left:0; top:0; width:15px; height:15px;
+     background:var(--navy); color:#fff; border-radius:50%; font-size:9px; font-weight:700;
+     display:flex; align-items:center; justify-content:center; }
+  table.cost{ width:100%; border-collapse:collapse; font-size:9.3px; margin:2px 0 6px; }
+  table.cost th,table.cost td{ border:1px solid var(--line); padding:4px 6px; text-align:left; vertical-align:top; }
+  table.cost th{ background:var(--navy); color:#fff; font-weight:700; font-family:"Source Sans 3",sans-serif; }
+  .ask{ background:var(--navy); color:#fff; border-radius:7px; padding:9px 12px; margin-top:8px; }
+  .ask b{ color:#ffe2b0; }
+  @media print{
+    body{ background:#fff; } .page{ box-shadow:none; margin:0; width:auto; min-height:0; }
+    .page+.page{ page-break-before:always; }
+    @page{ size:Letter; margin:0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page">
+  <div class="masthead">
+    <div class="mk">
+      <svg viewBox="0 0 64 64" width="30" height="30"><g fill="none" stroke="#3b4a78" stroke-width="3">
+        <path d="M10 26 L32 12 L54 26"/><path d="M22 26 a10 10 0 0 1 20 0"/>
+        <line x1="16" y1="30" x2="16" y2="46"/><line x1="26" y1="30" x2="26" y2="46"/>
+        <line x1="38" y1="30" x2="38" y2="46"/><line x1="48" y1="30" x2="48" y2="46"/>
+        <line x1="9" y1="50" x2="55" y2="50"/></g></svg>
+    </div>
+    <div class="mh-txt"><div class="bt1">FORT SMITH</div><div class="bt2">PUBLIC LIBRARY</div></div>
+    <div class="mh-right"><div class="t">Concept Proposal</div><div class="s">Prepared for discussion · June 2026</div></div>
+  </div>
+
+  <h1 class="title">The Library Magic Assistant</h1>
+  <div class="sub">A natural-language concierge for the catalog you already have</div>
+
+  <p class="lede">Patrons increasingly expect to ask for what they need in plain language and get an instant,
+  accurate answer. The library already owns the hard assets — a rich catalog in <b>Polaris</b>, four branches,
+  an events program, and licensed research databases. The Library Magic Assistant adds a friendly,
+  natural-language <b>front door</b> to those assets: available 24/7, in any language, and welcoming to
+  first-time researchers, caregivers, and job seekers. It extends the reference desk — it does not replace it.</p>
+
+  <div class="cols">
+    <div>
+      <h2>What patrons could do</h2>
+      <ul>
+        <li><b>Find &amp; reserve in plain English</b>, with live availability across all four branches.</li>
+        <li><b>Place holds</b> and choose a pickup branch; join the hold queue when copies are out.</li>
+        <li><b>Request interlibrary loans</b> when an item isn't owned.</li>
+        <li><b>Age-appropriate suggestions</b> with caregiver content notes.</li>
+        <li><b>Research help</b> — routed to the right licensed databases, augmented with <i>cited</i> sources.</li>
+        <li><b>Discover events &amp; story times</b> by age, branch, or day.</li>
+      </ul>
+      <p class="pill">All six are clickable today in the working prototype.</p>
+    </div>
+    <div>
+      <h2>Trust &amp; governance — non-negotiables</h2>
+      <ul>
+        <li><b>Read-only replica</b> — the assistant physically cannot alter the live ILS.</li>
+        <li><b>No patron PII</b> in the AI layer; account actions use official, authenticated APIs.</li>
+        <li><b>Whitelisted functions only</b> — the model never writes raw database queries, which defends against prompt-injection.</li>
+        <li><b>Grounded &amp; cited</b> answers — no fabricated facts.</li>
+        <li><b>Full audit log;</b> ambiguous or sensitive requests escalate to staff.</li>
+        <li>The existing catalog &amp; website stay fully usable — the assistant <b>augments</b>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>How it works</h2>
+  <div class="arch">
+    <div class="row"><div class="node"><b>Patron</b><small>web · mobile · kiosk · phone</small></div></div>
+    <div class="row"><span class="arrow">↓</span><small>&nbsp;plain-English question&nbsp;</small><span class="arrow">↓</span></div>
+    <div class="row"><div class="node llm"><b>Assistant (LLM)</b><small>intent + guardrails · no direct DB access</small></div></div>
+    <div class="row"><span class="arrow">↓</span><small>&nbsp;structured, whitelisted calls only&nbsp;</small><span class="arrow">↓</span></div>
+    <div class="three">
+      <div class="node read"><b>Read-only catalog view</b><small>availability, holdings, hours, events — no PII</small></div>
+      <div class="node write"><b>Official Polaris APIs</b><small>place hold · ILL · account (authenticated, per-session)</small></div>
+      <div class="node"><b>Databases + web</b><small>Ancestry, Gale… + cited open sources</small></div>
+    </div>
+  </div>
+  <p>The assistant interprets the question, then calls a small set of approved functions. <b>Reads</b> hit a
+  read-only copy of catalog and availability data. <b>Actions</b> (holds, ILL, account) go through Polaris's
+  official authenticated web services, scoped to the patron's session. <b>Research</b> routes to licensed
+  databases and adds cited open sources — every answer carries its citations.</p>
+
+  <div class="foot"><span>Fort Smith Public Library · Library Magic Assistant — concept proposal</span><span>Page 1 of 2 · Not affiliated with or endorsed by the library · sample concept</span></div>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page">
+  <div class="masthead">
+    <div class="mk">
+      <svg viewBox="0 0 64 64" width="30" height="30"><g fill="none" stroke="#3b4a78" stroke-width="3">
+        <path d="M10 26 L32 12 L54 26"/><path d="M22 26 a10 10 0 0 1 20 0"/>
+        <line x1="16" y1="30" x2="16" y2="46"/><line x1="26" y1="30" x2="26" y2="46"/>
+        <line x1="38" y1="30" x2="38" y2="46"/><line x1="48" y1="30" x2="48" y2="46"/>
+        <line x1="9" y1="50" x2="55" y2="50"/></g></svg>
+    </div>
+    <div class="mh-txt"><div class="bt1">FORT SMITH</div><div class="bt2">PUBLIC LIBRARY</div></div>
+    <div class="mh-right"><div class="t">Roadmap &amp; Delivery</div><div class="s">Phases · hosting · next steps</div></div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2>Phased roadmap</h2>
+      <div class="phase"><div class="ph-h"><h3>Phase 1 — Read-only concierge</h3><span class="when">≈ 6–10 weeks</span></div>
+        Hours, locations, events, "is it on the shelf?", recommendations, research routing. <b>No writes at all.</b>
+        Proves demand and accuracy at near-zero risk.</div>
+      <div class="phase"><div class="ph-h"><h3>Phase 2 — Authenticated actions</h3><span class="when">next quarter</span></div>
+        Holds, renewals, and ILL through Polaris's official APIs; library-card sign-in; staff dashboard.</div>
+      <div class="phase"><div class="ph-h"><h3>Phase 3 — Reach &amp; depth</h3><span class="when">following</span></div>
+        Multilingual, voice/phone, kiosk mode, deeper research augmentation, and analytics to inform collection decisions.</div>
+
+      <h2>Next steps — 30 / 60 / 90 days</h2>
+      <ol class="steps">
+        <li><b>Align on scope &amp; success metrics</b> with leadership — define what "good" looks like at 90 days.</li>
+        <li><b>Technical discovery with Polaris / Innovative</b> — confirm read exports, write APIs (PAPI), and database licensing terms.</li>
+        <li><b>Stand up the Phase-1 pilot</b> on real, read-only data behind a staff login; test with reference staff.</li>
+        <li><b>Soft-launch to patrons</b> on one high-traffic page; measure usage, accuracy, and staff time saved.</li>
+        <li><b>Decide Phase 2 + hosting model</b> from pilot results.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2>Where it runs — local, cloud, or hybrid</h2>
+      <p>Almost the entire system can run <b>on-premises</b>. The only piece that benefits from outside help
+      is the heavy AI model — and even that can be local.</p>
+      <table class="cost">
+        <tr><th>Component</th><th>Local?</th></tr>
+        <tr><td>Web app / patron UI</td><td>✔ Fully local (static site)</td></tr>
+        <tr><td>Read-only catalog replica</td><td>✔ Local DB fed by Polaris exports</td></tr>
+        <tr><td>Orchestration + guardrails</td><td>✔ Local service</td></tr>
+        <tr><td>Semantic search / embeddings</td><td>✔ Local (open models)</td></tr>
+        <tr><td>The language model</td><td>◐ Local on a GPU box, <i>or</i> cloud API</td></tr>
+      </table>
+      <p><b>Recommended: hybrid.</b> Keep all data + retrieval + a local model in-building for routine
+      questions; optionally call a cloud model for the hardest turns, sending only non-PII catalog snippets
+      under a zero-retention agreement. Patron data stays home; answer quality stays high.</p>
+
+      <h2>Rough cost envelope</h2>
+      <table class="cost">
+        <tr><th>Option</th><th>Up-front</th><th>Ongoing</th></tr>
+        <tr><td>Phase-1 pilot, cloud model</td><td>Integration effort</td><td>Low hundreds $/mo at pilot volume</td></tr>
+        <tr><td>On-prem appliance (8–14B model + full stack)</td><td>~$5–25k GPU server</td><td>≈ $0 per query + staff time</td></tr>
+        <tr><td>Higher quality / concurrency on-prem</td><td>$15–40k GPU</td><td>Power + maintenance</td></tr>
+      </table>
+      <p class="note">The library's existing internal stack already proves the local pattern: Postgres + vector
+      search + a local model server. The same building blocks underpin Phase 1.</p>
+    </div>
+  </div>
+
+  <div class="ask"><b>The ask:</b> endorse a low-risk <b>Phase-1 pilot</b> on read-only data, choose a
+  <b>name</b> for the assistant, and authorize a short technical-discovery call with the ILS vendor.</div>
+
+  <div class="foot"><span>Fort Smith Public Library · Library Magic Assistant — concept proposal</span><span>Page 2 of 2 · Working name "Marian" (placeholder)</span></div>
+</section>
+
+</body>
+</html>

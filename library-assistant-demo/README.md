@@ -140,8 +140,38 @@ away." Demo Phase 1 live (this mockup), name Phase 2/3 as the roadmap.
 
 ## Files
 
+**Interactive demo**
 - `index.html` — the branded homepage + assistant launcher/panel
 - `styles.css` — palette + layout matched to the live site
 - `app.js` — sample data (catalog, branches, hours, events, databases) + the rules
   engine that stands in for the LLM's intent routing
-- `README.md` — this document
+- `library-magic-assistant-demo.html` — **single-file build** (CSS + JS inlined); email
+  it or drop it on a tablet/kiosk — opens with no server. Rebuild via
+  `node build-standalone.cjs`.
+
+**Leave-behinds for the meeting**
+- `proposal.html` / `Library-Magic-Assistant-Proposal.pdf` — the **2-page proposal**
+  (vision, architecture, governance, phased roadmap, next steps, hosting & cost). Open
+  `proposal.html` and Print → Save as PDF to regenerate.
+- `BUSINESS-NOTES.md` — analysis of standing up a managed-AI-for-orgs business.
+
+**Proposed data layer (the catalog as a read-only, PII-free surface)**
+- `sql/polaris-ai-views.sql` — proposed **SQL Server (Polaris) read-only views** the
+  assistant iterates over: title metadata (MARC-derived), real-time per-branch
+  availability, aggregate hold demand, new arrivals, and a denormalized discovery blob
+  for embeddings. Includes schema-discovery query + least-privilege grants.
+- `sql/pgvector-repository.sql` — downstream **Postgres + pgvector** repository the tool
+  searches (mirrors this repo's Supabase + Ollama stack), plus the sync sketch.
+
+**This document** — `README.md`
+
+### The proposed data flow, end to end
+
+```
+Polaris (SQL Server)  ──►  ai.* read-only views  ──►  nightly sync + embed (Ollama)
+   live availability         (no PII)                       │
+        │                                                   ▼
+        └────────── live re-check before a hold ──►  Postgres + pgvector (catalog_titles)
+                                                            │
+                                          assistant retrieves + grounds answers (cited)
+```
