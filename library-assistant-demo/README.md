@@ -155,6 +155,8 @@ away." Demo Phase 1 live (this mockup), name Phase 2/3 as the roadmap.
   run-cost envelope: per-conversation + monthly-by-volume + on-prem vs cloud). Open
   `proposal.html` and Print → Save as PDF to regenerate.
 - `BUSINESS-NOTES.md` — analysis of standing up a managed-AI-for-orgs business.
+- `DEMO-AND-PROMO.md` — the **opening demo scenario** (live click-through for the meeting)
+  and a **30-second promo video script** (storyboard + voiceover + partnership messaging).
 
 **Proposed data layer (the catalog as a read-only, PII-free surface)**
 - `sql/polaris-ai-views.sql` — proposed **SQL Server (Polaris) read-only views** the
