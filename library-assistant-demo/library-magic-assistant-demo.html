@@ -124,7 +124,9 @@ h1,h2,h3,h4{ font-family:"Cinzel", Georgia, serif; letter-spacing:.5px; }
 .bigcta:hover{ transform:translateY(-1px); }
 
 /* teal tiles */
-.tiles{ display:grid; grid-template-columns:repeat(5,1fr); }
+.tiles{ display:grid; grid-template-columns:repeat(6,1fr); }
+.tile-pitch{ background:var(--mauve); }
+.tile-pitch:hover{ background:var(--mauve-d); }
 .tile{
   background:var(--teal); color:#fff; border:none; border-right:1px solid rgba(255,255,255,.18);
   padding:30px 10px; font-weight:700; font-size:15px; letter-spacing:1.5px; cursor:pointer;
@@ -339,6 +341,7 @@ h1,h2,h3,h4{ font-family:"Cinzel", Georgia, serif; letter-spacing:.5px; }
     <button class="tile" onclick="ask('What teen programs are happening?')"><span class="tile-ic">🧑</span>TEENS</button>
     <button class="tile" onclick="ask('Recommend a book for an adult reader')"><span class="tile-ic">🧑‍🦱</span>ADULTS</button>
     <button class="tile" onclick="ask('What are the hours and locations?')"><span class="tile-ic">🏛️</span>MEETING ROOMS</button>
+    <button class="tile tile-pitch" onclick="window.open('proposal.html','_blank')"><span class="tile-ic">📊</span>PROJECT PITCH</button>
   </section>
 
   <!-- Feature explainer (for the CEO walkthrough) -->
