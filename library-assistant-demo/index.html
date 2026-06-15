@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fort Smith Public Library — Concept Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- PROTOTYPE banner -->
+  <div class="proto-banner">
+    ✦ Concept prototype — sample data only, not a live service. Built to show the “art of the possible.”
+  </div>
+
+  <!-- Brand header (navy logo block, like the real site) -->
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand" href="#">
+        <span class="brandmark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="46" height="46" role="img" aria-label="Library building">
+            <g fill="none" stroke="#ffffff" stroke-width="2.4">
+              <path d="M10 26 L32 12 L54 26" />
+              <path d="M22 26 a10 10 0 0 1 20 0" fill="none"/>
+              <line x1="14" y1="30" x2="14" y2="48" /><line x1="22" y1="30" x2="22" y2="48" />
+              <line x1="32" y1="30" x2="32" y2="48" /><line x1="42" y1="30" x2="42" y2="48" />
+              <line x1="50" y1="30" x2="50" y2="48" />
+              <line x1="8" y1="52" x2="56" y2="52" /><line x1="6" y1="56" x2="58" y2="56" />
+            </g>
+          </svg>
+        </span>
+        <span class="brandtext">
+          <span class="bt-1">FORT SMITH</span>
+          <span class="bt-2">PUBLIC LIBRARY</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Black nav / search bar -->
+  <div class="navbar">
+    <div class="wrap navbar-inner">
+      <button class="hamb" aria-label="Menu">☰</button>
+      <nav class="mainnav">
+        <a href="#">Books, Movies &amp; More</a>
+        <a href="#">Events</a>
+        <a href="#">Research &amp; Explore</a>
+        <a href="#">About The Library</a>
+        <a href="#">Plan Your Visit</a>
+        <a href="#">Get Involved</a>
+      </nav>
+      <button class="hours-btn" onclick="ask('What are the hours and locations?')">
+        <span class="clock">🕐</span><span>HOURS</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Alert banner (mauve) -->
+  <div class="alertbar">
+    <span class="alert-ic">❗</span> All library locations will be closed June 19th for Juneteenth.
+  </div>
+
+  <!-- Hero: "Your Community Front Porch" + assistant -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="wrap hero-inner">
+      <h1 class="porch">Your Community Front&nbsp;Porch</h1>
+
+      <!-- Catalog/website search toggle, like the real site -->
+      <div class="searchbox">
+        <div class="search-toggle">
+          <label class="active"><input type="radio" name="scope" checked /> CATALOG</label>
+          <label><input type="radio" name="scope" /> WEBSITE</label>
+        </div>
+        <form class="searchform" onsubmit="ask(this.q.value||'Find me a book about dragons'); this.q.value=''; return false;">
+          <input name="q" type="text" placeholder="Search books, videos, etc." />
+          <button type="submit" aria-label="Search">🔎</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- "HOW CAN WE HELP?" — now answered by the assistant -->
+  <section class="helpband">
+    <div class="wrap">
+      <div class="help-head">HOW CAN WE HELP?</div>
+      <p class="help-sub">Meet <strong id="assistant-name">Marian</strong> — ask in plain English and get an answer in seconds, 24/7, in any language.</p>
+      <div id="hero-suggestions" class="chiprow"></div>
+      <button class="bigcta" onclick="openChat()">✨ Start a conversation</button>
+    </div>
+  </section>
+
+  <!-- Teal quick-link tiles (Genealogy, Kids, Teens, Adults, Meeting Rooms) -->
+  <section class="tiles">
+    <button class="tile" onclick="ask('Help me research my family tree')"><span class="tile-ic">🌳</span>GENEALOGY</button>
+    <button class="tile" onclick="ask('Book ideas for my 7-year-old')"><span class="tile-ic">🧒</span>KIDS</button>
+    <button class="tile" onclick="ask('What teen programs are happening?')"><span class="tile-ic">🧑</span>TEENS</button>
+    <button class="tile" onclick="ask('Recommend a book for an adult reader')"><span class="tile-ic">🧑‍🦱</span>ADULTS</button>
+    <button class="tile" onclick="ask('What are the hours and locations?')"><span class="tile-ic">🏛️</span>MEETING ROOMS</button>
+  </section>
+
+  <!-- Feature explainer (for the CEO walkthrough) -->
+  <section class="wrap features">
+    <h2>What the assistant can do</h2>
+    <div class="featgrid">
+      <div class="feat"><div class="ficon">🔎</div><h3>Find &amp; reserve, in plain English</h3><p>Natural-language search over a <strong>read-only view</strong> of the catalog, with live availability across all four branches. Place holds and choose a pickup branch.</p></div>
+      <div class="feat"><div class="ficon">🔄</div><h3>Interlibrary loan</h3><p>Don't own it? The assistant drafts and submits an ILL request from a partner library — no desk visit required.</p></div>
+      <div class="feat"><div class="ficon">🧒</div><h3>Age-appropriate suggestions</h3><p>Tell it an age or grade and it recommends right-leveled titles, with content notes for caregivers.</p></div>
+      <div class="feat"><div class="ficon">🗓️</div><h3>Events &amp; story times</h3><p>Find programs by age, branch, or day — story times, clubs, workshops — and set reminders.</p></div>
+      <div class="feat"><div class="ficon">🔬</div><h3>Research help</h3><p>Routes you to the right licensed databases (Ancestry, Gale, more) and <em>augments</em> with cited open-web sources.</p></div>
+      <div class="feat"><div class="ficon">🔐</div><h3>Safe by design</h3><p>Reads from a read-only replica with no patron PII. Holds &amp; ILL go through Polaris's official APIs with full audit.</p></div>
+    </div>
+  </section>
+
+  <!-- GIVE band (coral) -->
+  <section class="giveband">
+    <div class="wrap">Love your library? <a href="#" onclick="return false;" class="give-btn">GIVE ❤</a></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="sitefoot">
+    <div class="wrap footgrid">
+      <div>
+        <div class="brand foot-brand">
+          <span class="brandtext"><span class="bt-1">FORT SMITH</span><span class="bt-2">PUBLIC LIBRARY</span></span>
+        </div>
+        <p class="subtle">3201 Rogers Ave, Fort Smith, AR 72903<br>(479) 783-0229</p>
+      </div>
+      <div><h4>Visit</h4><p class="subtle">Main · Dallas · Miller · Windsor Drive</p></div>
+      <div><h4>Connect</h4><p class="subtle">Catalog · My Account · Events · Research</p></div>
+      <div><h4>About this page</h4><p class="subtle tiny">Concept prototype for discussion. Not affiliated with or endorsed by the library. Sample data only.</p></div>
+    </div>
+  </footer>
+
+  <!-- Floating launcher -->
+  <button id="launcher" class="launcher" onclick="openChat()">✨ Ask <span id="assistant-name2">Marian</span></button>
+
+  <!-- Chat panel -->
+  <div id="chat" class="chat">
+    <div class="chat-head">
+      <div class="chat-id"><span class="chat-av">✨</span><div><strong>Marian</strong><br><small>Library magic assistant · concept</small></div></div>
+      <button class="chat-close" onclick="closeChat()" aria-label="Close">×</button>
+    </div>
+    <div id="messages" class="messages"></div>
+    <div id="suggestions" class="suggestions"></div>
+    <form id="chat-form" class="chat-foot">
+      <input id="chat-input" type="text" placeholder="Ask me anything about the library…" autocomplete="off" />
+      <button type="submit" aria-label="Send">➤</button>
+    </form>
+    <div class="disclaimer">Prototype · responses use sample data, not the live catalog.</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
