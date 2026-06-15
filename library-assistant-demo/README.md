@@ -150,8 +150,9 @@ away." Demo Phase 1 live (this mockup), name Phase 2/3 as the roadmap.
   `node build-standalone.cjs`.
 
 **Leave-behinds for the meeting**
-- `proposal.html` / `Library-Magic-Assistant-Proposal.pdf` — the **2-page proposal**
-  (vision, architecture, governance, phased roadmap, next steps, hosting & cost). Open
+- `proposal.html` / `Library-Magic-Assistant-Proposal.pdf` — the **2-page proposal + cost
+  appendix** (vision, architecture, governance, phased roadmap, next steps, hosting, and a
+  run-cost envelope: per-conversation + monthly-by-volume + on-prem vs cloud). Open
   `proposal.html` and Print → Save as PDF to regenerate.
 - `BUSINESS-NOTES.md` — analysis of standing up a managed-AI-for-orgs business.
 

@@ -61,6 +61,53 @@ Typical scope you'd own:
   productized stack (one codebase, configured per client) are what make it profitable
   rather than bespoke consulting forever.
 
+## Costs, pricing, and margins (the actual numbers)
+
+**Your cost of goods is low.** A retrieval-grounded library concierge runs fine on a
+small/mid model — you do not need a frontier model for "is this on the shelf?"
+
+**Per-conversation compute** (~3 turns, ~10K input + 1.5K output tokens):
+- Lighter model: **~$0.02** per conversation
+- Higher-quality model: **~$0.05** per conversation
+- Response/prompt caching pushes the real number lower.
+
+**Monthly model cost by volume:**
+
+| Conversations/mo | Lighter | Higher-quality |
+|---|---|---|
+| 2,000 | ~$35 | ~$105 |
+| 5,000 | ~$90 | ~$250 |
+| 10,000 | ~$180 | ~$500 |
+| 20,000 | ~$360 | ~$1,000 |
+
+**Fixed infra** (hosting + Postgres/pgvector + logging): **~$50–200/mo**. Embeddings run
+locally for ~$0. **On-prem**: ~$0 marginal per query after a one-time GPU box (~$5–25k).
+
+**So COGS for one mid-size library is roughly $200–500/mo.** Compute is cheap; your
+**labor** (monitoring, tuning, support) is the real cost — price for it.
+
+### Pricing model
+
+| Lever | Reasonable range |
+|---|---|
+| **Setup / integration fee** (one-time) | $3k–25k, scoped per data source |
+| **Monthly managed retainer** (the business) | **$500–2,500/mo** per library by size/volume/SLA |
+| **On-prem appliance** (optional) | sell/lease the GPU box for privacy-bound clients |
+
+### Margin math
+
+At **$1,500/mo** with ~$300 COGS, that's **~80% gross margin before your labor** — and the
+retainer is recurring and sticky once embedded. Public-library deals realistically land
+around **$6k–30k/year** (bigger systems more). Libraries are used to vendor software priced
+**by population served or cardholders**, so tier that way — it reads as familiar to the buyer.
+
+**What's reasonable to charge:** anchor on **value and budget, not cost**. The assistant
+offloads routine reference 24/7 — easily worth a few thousand a month to a system this size —
+but the retainer must genuinely cover support/tending, because that (not inference) is where
+your cost lives. Grants (state library/LSTA, Friends-of-the-Library) frequently fund pilots,
+which softens the public-sector cash-flow problem. Keep one person able to tend several
+libraries via the templated stack, and the labor cost stays sane.
+
 ## A sensible path
 
 1. **Make Fort Smith customer zero.** Deliver Phase 1 well; turn it into a written case
