@@ -125,8 +125,8 @@ h1,h2,h3,h4{ font-family:"Cinzel", Georgia, serif; letter-spacing:.5px; }
 
 /* teal tiles */
 .tiles{ display:grid; grid-template-columns:repeat(6,1fr); }
-.tile-pitch{ background:var(--mauve); }
-.tile-pitch:hover{ background:var(--mauve-d); }
+.tile.tile-pitch{ background:var(--mauve); }
+.tile.tile-pitch:hover{ background:var(--mauve-d); }
 .tile{
   background:var(--teal); color:#fff; border:none; border-right:1px solid rgba(255,255,255,.18);
   padding:30px 10px; font-weight:700; font-size:15px; letter-spacing:1.5px; cursor:pointer;
@@ -292,6 +292,7 @@ h1,h2,h3,h4{ font-family:"Cinzel", Georgia, serif; letter-spacing:.5px; }
         <a href="#">About The Library</a>
         <a href="#">Plan Your Visit</a>
         <a href="#">Get Involved</a>
+        <a href="project.html" style="color:#ffe2b0">📚 Project Library</a>
       </nav>
       <button class="hours-btn" onclick="ask('What are the hours and locations?')">
         <span class="clock">🕐</span><span>HOURS</span>
